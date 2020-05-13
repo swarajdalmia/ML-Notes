@@ -3,7 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=python
 
 .DS_Store
-
+src/.ipynb_checkpoints/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
