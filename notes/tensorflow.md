@@ -63,7 +63,7 @@ Tensorflow programs consist of two seperate sections:
 
 After making a computational graph one needs to run it. One doesn't get an output for all the variables in the computational graph, unless one specifies them explitly in the running session. To run the entire graph, one calls the last node and tensorflow automatically executes the entire graph including all the assignments and other transformations to the tensors.
 
-#### Session 
+### Session 
 A session is basically the backbone of a tensorflow program. A session must be called and run to execute/run a computational graph.
 ```
 with tf.Session as sess:
@@ -97,6 +97,75 @@ loss = model.evaluate(X, y, verbose=0)
 ```
 y = model.predict(X)
 ```
+
+## Types of Models 
+
+### Sequential Models
+
+The simpler API, which consists in first defining a sequential model and then linearly adding layers to it. 
+The visible layer of the network is defined by the “input\_shape” argument on the first hidden layer.
+
+```
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential()
+model.add(Dense(100, input_shape=(8,)))
+model.add(Dense(50))
+model.add(Dense(20))
+model.add(Dense(1))
+```
+
+### Functional Models
+
+This one is more flexible and involves connected the output of one layer into the input of another. 
+
+```
+from tensorflow.keras import Model
+from tensorflow.keras import Input
+from tensorflow.keras.layers import Dense
+
+x_in = Input(shape=(8,))
+x = Dense(10)(x_in)
+x_out = Dense(1)(x)
+
+model = Model(inputs=x_in, outputs=x_out)
+```
+
+## Visualization 
+
+### Model Visualization
+
+- model.summary() : Outputs a text description of the model.
+- One can create a plot of the model by calling the plot\_model() function.
+```
+plot_model(model, 'model.png', show_shapes=True)
+```
+
+### Plot Learning Curves
+
+The fit function returns a history object that contains a trace of performance metrics recorded at the end of each training epoch. This includes the chosen loss function and each configured metric, such as accuracy, and each loss and metric is calculated for the training and validation datasets.
+
+A learning curve is a plot of the loss on the training dataset and the validation dataset. We can create this plot from the history object using the Matplotlib library. [Example](https://machinelearningmastery.com/tensorflow-tutorial-deep-learning-with-tf-keras/)
+
+
+## Saving and Loading the Model
+
+A model can be saved using the model.save() function. It can be loaded later using the load\_model() function.
+
+The model is saved in H5 format, an efficient array storage format. As such, you must ensure that the h5py library is installed on your workstation.
+
+- The weights can be saved and loaded as well. For details look [here](https://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/)
+    - the checkpoint binary file contains all the values of the weights, biases, gradients and all the other variables saved.
+    - in this case the meta file can be imported to import the meta computational graph. 
+    - along with these, tf also has a file named checkpoint which simply keeps a record of latest checkpoint files saved.
+- saver.save and saver.restore can be used as well. 
+
+
+
+
+
+
 
 
 
