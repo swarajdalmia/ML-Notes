@@ -1,10 +1,11 @@
 # Tensorflow Concepts 
 
-TensorFlow is an open source machine learning framework that Google created and it is used to design, build, and train deep learning models. TensorFlow is a python library that used to implement deep networks and performs numerical computations with the help of tensors and computational graphs/data flow graphs.  In TF2.0, the modern tf.keras API bRINGS the simplicity and ease of use of Keras to the TensorFlow project. 
+TensorFlow is an open source machine learning framework that Google created and it is used to design, build, and train deep learning models. TensorFlow is a python library that used to implement deep networks and performs numerical computations with the help of tensors and computational graphs/data flow graphs.  In TF2.0, the modern tf.keras API brings the simplicity and ease of use of Keras to the TensorFlow project. One can operate at different levels of abstraction.  
 
 ## Tensors 
 
 What is a tensor ? and how does it differ from matrices or numpy arrays ?
+All the data that flows through a computational graph is called a tensor.
 
 Tensors in tensorflow/deep learning:
 - tensors are a popular way of representing data in deep learning frameworks
@@ -12,7 +13,6 @@ Tensors in tensorflow/deep learning:
 
 Rank of a tensor is the dimensionality of the multi-dim array. 
 Shape of a tensor depicts the exact size of the milti dim array.
-
 
 ## Data types
 
@@ -58,6 +58,10 @@ In these graphs, nodes represent mathematical operations, while the edges repres
 Tensorflow programs consist of two seperate sections: 
 - building a computational graph 
 - running the computational graph
+
+The core advantage of having a computational graph is allowing parallelism or dependency driving scheduling which makes training faster and more efficient.
+
+Tensorboard can be used to visualise the computational graph. 
 
 ### Executing the computational graph
 
@@ -163,9 +167,28 @@ The model is saved in H5 format, an efficient array storage format. As such, you
 
 
 
+## Tensorflow vs PyTorch
+
+PyTorch is inspired by Torch(Lua based library). It has primarily been developed by Facebook‘s artificial intelligence research group. Both networks use tensors as the fundamental processing type.  
 
 
+- Static vs Dynamic Approach :
+    -  In tensorflow, graphs have to be built before hand(static approach) and are then sent to the GPU where it behaves like a black box. All communication with the outer world is performed via tf.Session object and tf.Placeholder, which are tensors that will be substituted by external data at runtime. TensorFlow provides a way of implementing dynamic graph using a library called TensorFlow Fold, but PyTorch has it inbuilt.  
 
+    - Pytorch has a dynamic approach to graph computation where the graphs are created on the fly. In PyTorch, you can fully dive into every level of the computation, and see exactly what is going on.
 
+- Data Parallelism and Distributed Training
+PyTorch has one of the most important features known as declarative data parallelism. This feature allows you to use torch.nn.DataParallel to wrap any module. This will be parallelised over batch dimension and the feature will help you to leverage multiple GPUs easily. PyTorch optimizes performance by taking advantage of native support for asynchronous execution from Python. In TensorFlow, you'll have to manually code and fine tune every operation to be run on a specific device to allow distributed training. 
+
+- Visualization : When it comes to visualization of the training process, TensorFlow takes the lead. Visualization helps the developer track the training process and debug in a more convenient way. TenforFlow’s visualization library is called TensorBoard. PyTorch developers use Visdom, however, the features provided by Visdom are very minimalistic and limited, so TensorBoard scores a point in visualizing the training process.
+
+- Project Deployment is much better/easier with Tensorflow. [Look here](https://builtin.com/data-science/pytorch-vs-tensorflow) or [here](https://towardsdatascience.com/pytorch-vs-tensorflow-spotting-the-difference-25c75777377b).
+
+- Speed : There is not a lot of difference in speed/efficiency.
+
+- PyTorch is easier to debug. Since computation graph in PyTorch is defined at runtime you can use our favorite Python debugging tools such as pdb, ipdb, PyCharm debugger or old trusty print statements. This is not the case with TensorFlow. You have an option to use a special tool called tfdbg which allows to evaluate tensorflow expressions at runtime and browse all tensors and operations in session scope. Of course, you won’t be able to debug any python code with it, so it will be necessary to use pdb separately. [here](https://towardsdatascience.com/pytorch-vs-tensorflow-spotting-the-difference-25c75777377b).
+
+PyTorch is a good choice for research oriented developers. However, for production purposes, TF, seems better.
+ 
 
 
