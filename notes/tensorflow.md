@@ -191,4 +191,6 @@ PyTorch has one of the most important features known as declarative data paralle
 PyTorch is a good choice for research oriented developers. However, for production purposes, TF, seems better.
  
 
+## Learning Tensorlfow/Other Resources
 
+[https://github.com/jtoy/awesome-tensorflow]
