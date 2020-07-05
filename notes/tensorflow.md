@@ -151,34 +151,6 @@ x_out = Dense(1)(x)
 model = Model(inputs=x_in, outputs=x_out)
 ```
 
-## Building a keras model with an API 
-
-Building a model in Keras involves four important steps:
-1. Defining the model : discussed above.
-2. Compiling the model 
-3. Fitting the model
-4. Evaluating the model
-
-### Compiling the model 
-
-We define three parameters when compiling the model: the optimizer parameter, the loss parameter, the metrics parameter. 
-
-```
-model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['accuracy'])
-```
-
-### Training the model 
-
-```
-model.fit(x=data, y=labels, epochs=100, batch_size=10)
-```
-
-### Evaluate 
-The following can be done on both the training and the test set.
-```
-model.evaluate(x=data_test,y=labels_test)
-```
-
 ## Visualization 
 
 ### Model Visualization
