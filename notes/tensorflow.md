@@ -27,7 +27,10 @@ node1 = tf.constant(3.0) # by default, dtype = float32
 node2 = tf.constant(3) # by default, dtype = int32
 ``` 
 
-- place holders : a place holder is a promise to provide a value later
+- place holders : a place holder is a promise to provide a value later.  Values for the placeholders will be fed at runtime. We feed the data to the computational graphs using placeholders.
+
+We assign the values of the placeholder using the feed_dict parameter. The feed_dict parameter is basically the dictionary where the key represents the name of the placeholder, and the value represents the value of the placeholder.
+
 ```
 # the size of the placeholder is not specified just that it will contain a float tensor. The tensor can be of any rank
 a = tf.placeholder(tf.float32)
@@ -37,14 +40,24 @@ with tf.Session() as sess:
 # feed_dict must be used whenever one wants to assign values to placeholders in python
 ```
 
-- variables : allows us to add trainable parameters to a graph. Typically used for weights and biases.
+- variables : allows us to add trainable parameters to a graph. Typically used for weights and biases. Names can be assigned to variables. TensorFlow graph, it will be saved as weight. 
 
 ```
-var = tf.Variable(tf.truncated_normal([3]))
+var = tf.Variable(tf.truncated_normal([3]), name="weight")
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer()) #One has to call, glocal_variables_initializer when one uses tf.Varaible
     print(sess.run(var)) # [ 0.50536436 0.56707895 0.98391068 ]
 ```
+We can also initialize a new variable with a value from another variable using initialized_value().
+However, after defining a variable, we need to initialize all of the variables in the computational graph. That can be done using tf.global_variables_initializer().
+
+We can also create a TensorFlow variable using tf.get_variable(). It takes the three important parameters, which are name, shape, and initializer.
+Unlike tf.Variable(), we cannot pass the value directly to tf.get_variable(); instead, we use initializer. 
+
+Variables created using tf.Variable() cannot be shared, and every time we call tf.Variable(), it will create a new variable. But tf.get_variable() checks the computational graph for an existing variable with the specified parameter. If the variable already exists, then it will be reused; otherwise, a new variable will be created
+
+It is recommended to use tf.get_variable() rather than tf.Variable(), because tf.get_variable, allows you to share variables, and it will make the code refactoring easier.
+
 
 ## Operators 
 
@@ -104,6 +117,8 @@ y = model.predict(X)
 
 ## Types of Models 
 
+Keras is another popularly used deep learning library. It was developed by François Chollet at Google. It is well known for its fast prototyping, and it makes model building simple. It is a high-level library, meaning that it does not perform any low-level operations on its own, such as convolution. It uses a backend engine for doing that, such as TensorFlow. The Keras API is available in tf.keras, and TensorFlow 2.0 uses it as the primary API.
+
 ### Sequential Models
 
 The simpler API, which consists in first defining a sequential model and then linearly adding layers to it. 
@@ -136,6 +151,34 @@ x_out = Dense(1)(x)
 model = Model(inputs=x_in, outputs=x_out)
 ```
 
+## Building a keras model with an API 
+
+Building a model in Keras involves four important steps:
+1. Defining the model : discussed above.
+2. Compiling the model 
+3. Fitting the model
+4. Evaluating the model
+
+### Compiling the model 
+
+We define three parameters when compiling the model: the optimizer parameter, the loss parameter, the metrics parameter. 
+
+```
+model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['accuracy'])
+```
+
+### Training the model 
+
+```
+model.fit(x=data, y=labels, epochs=100, batch_size=10)
+```
+
+### Evaluate 
+The following can be done on both the training and the test set.
+```
+model.evaluate(x=data_test,y=labels_test)
+```
+
 ## Visualization 
 
 ### Model Visualization
@@ -145,6 +188,9 @@ model = Model(inputs=x_in, outputs=x_out)
 ```
 plot_model(model, 'model.png', show_shapes=True)
 ```
+TensorBoard is TensorFlow's visualization tool, which can be used to visualize a computational graph. It can also be used to plot various quantitative metrics and the results of several intermediate calculations. When we are training a really deep neural network, it becomes confusing when we have to debug the network. So, if we can visualize the computational graph in TensorBoard, we can easily understand such complex models, debug them, and optimize them. 
+
+One can create name scopes in tensor board to reduce complexity and helps us to better understand a model by grouping related nodes together. Having a name scope helps us to group similar operations in a graph. It comes in handy when we are building a complex architecture. 
 
 ### Plot Learning Curves
 
@@ -165,6 +211,20 @@ The model is saved in H5 format, an efficient array storage format. As such, you
     - along with these, tf also has a file named checkpoint which simply keeps a record of latest checkpoint files saved.
 - saver.save and saver.restore can be used as well. 
 
+
+## Eager execution
+
+
+Eager execution in TensorFlow is more Pythonic and allows for rapid prototyping. Unlike the graph mode, where we need to construct a graph every time to perform any operations, eager execution follows the imperative programming paradigm, where any operations can be performed immediately, without having to create a graph.
+
+In order to enable eager execution, just call the tf.enable_eager_execution() function and we can simply run the below without creating a session and calling sess.run()
+
+```
+x = tf.constant(11) 
+y = tf.constant(11) 
+z = x*y
+print z
+```
 
 
 ## Tensorflow vs PyTorch
