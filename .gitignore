@@ -1,4 +1,5 @@
 # Local 
+.Rh*
 **/.DS_Store
 src/.ipynb_checkpoints/
 .requirements.txt
