@@ -1,8 +1,10 @@
 import tensorflow 
+import sys
 import numpy
+import torch
 
 def foo():
-    print(1)
+    print(torch.__version__)
 
 if __name__ == "__main__":
     foo()
