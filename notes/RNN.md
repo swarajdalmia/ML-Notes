@@ -40,20 +40,18 @@ and clip the gradient value to a certain range.
 
 In a one-to-one architecture, a single input is mapped to a single output(through the hidden layer), and the output from the time step t is fed as an input to the next time step.
 
+For instance, for a text generation task, we take the output generated from a current time step and feed it as the input to the next time step to generate the next word. This architecture is also widely used in stock market predictions.
 
+## One-many Architecture
 
+In a one-to-many architecture, a single input is mapped to multiple hidden states and multiple output values, which means RNN takes a single input and maps it to an output sequence. Although we have a single input value, we share the hidden states across time steps to predict the output.
 
+One such application of this architecture is image caption generation. We pass a single image as an input, and the output is the sequence of words constituting a caption of the image.
 
+## Many-one Architecture 
 
+A many-to-one architecture, as the name suggests, takes a sequence of input and maps it to a single output value(via hidden layers that pass info to the other). One such popular example of a many-to-one architecture is sentiment classification. 
 
+## Many-mnay Arcitecture 
 
-
-
-
-
-
-
-
-
-
-
+In many-to-many architectures, we map a sequence of input of arbitrary length to a sequence of output of arbitrary length. This architecture has been used in various applications. Some of the popular applications of many-to-many architectures include language translation, conversational bots, and audio generation.
