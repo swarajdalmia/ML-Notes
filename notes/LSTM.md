@@ -88,4 +88,11 @@ y_t = softmax(w*h_t)
 ![Formulas for updates](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm-equations.jpeg)
 
 
+## Backpropagation 
+
+We compute the loss at each time step to determine how well our LSTM model is predicting the output. Our final loss is the sum of loss at all time steps.
+We minimize the loss using gradient descent. We find the derivative of loss with respect to all of the weights used in the network and find the optimal weights 
+to minimize the loss. 
+
+
 
