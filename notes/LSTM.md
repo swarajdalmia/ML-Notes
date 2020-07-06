@@ -85,7 +85,7 @@ y_t = softmax(w*h_t)
 
 ![An LSTM fineprint](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm.jpeg)
 
-![Formulas for updates)(https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm-equations.jpeg)
+![Formulas for updates](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm-equations.jpeg)
 
 
 
