@@ -32,6 +32,8 @@ h_t = (1-z_t)*c_t + z_t*h_(t-1)
 ### Output 
 The output is computed as `softmax(w*h_t)`.
 
+![GRU blueprint](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/gru.jpeg)
+
 
 
 
