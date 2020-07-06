@@ -1,5 +1,4 @@
 # RNNs
-
 In a normal feedforward neural network, each input is independent of other input. But with a sequential dataset, we need to know about the past input 
 to make a prediction. Let's suppose that we want to predict the next word in a sentence; to do so, we need to remember the previous words.
 
@@ -15,12 +14,10 @@ hidden_i = activation_func(weight_1*input + weight_2*hidden_(i-1))
 This hidden_i is the current output of the hidden layer which serves as an RNN block. 
 
 ## Backpropagation through time (BPTT)
-
 Backpropagation with RNNs is a little more challenging due to the recursive nature of the weights and their effect on the loss which spans over time.
 The loss for the RNN is the sum of the loss for all the time steps(visualise the RNN being rolled out for the set of sequential inputs).
 
 ## Vanishing and Exploding Gradients problem 
-
 Sometimes the prediction of output is dependent on data which occurs way earlier in the sequence. However, the calculation of the partial gradient for the terms 
 involves a lot of deriavtes and results in vanishing gradients. This makes it difficult for the weights to take into account words that occur at the 
 start of a long sequence.
@@ -37,21 +34,44 @@ and clip the gradient value to a certain range.
 # Different types of RNN architectures
 
 ## One-one architecture 
-
 In a one-to-one architecture, a single input is mapped to a single output(through the hidden layer), and the output from the time step t is fed as an input to the next time step.
 
 For instance, for a text generation task, we take the output generated from a current time step and feed it as the input to the next time step to generate the next word. This architecture is also widely used in stock market predictions.
 
 ## One-many Architecture
-
 In a one-to-many architecture, a single input is mapped to multiple hidden states and multiple output values, which means RNN takes a single input and maps it to an output sequence. Although we have a single input value, we share the hidden states across time steps to predict the output.
 
 One such application of this architecture is image caption generation. We pass a single image as an input, and the output is the sequence of words constituting a caption of the image.
 
 ## Many-one Architecture 
-
 A many-to-one architecture, as the name suggests, takes a sequence of input and maps it to a single output value(via hidden layers that pass info to the other). One such popular example of a many-to-one architecture is sentiment classification. 
 
-## Many-mnay Arcitecture 
-
+## Many-many Arcitecture 
 In many-to-many architectures, we map a sequence of input of arbitrary length to a sequence of output of arbitrary length. This architecture has been used in various applications. Some of the popular applications of many-to-many architectures include language translation, conversational bots, and audio generation.
+
+# Bi-directional RNNs
+In a bidirectional RNN, we have two different layers of hidden units. Both of these layers connect from the input layer to the output layer. In one layer, the hidden states are shared from left to right, and in the other layer, they are shared from right to left.
+
+What is the use of bidirectional RNNs? In certain cases, reading the input sequence from both sides is very useful. So, a bidirectional RNN consists of two RNNs, one reading the sentence forward and the other reading the sentence backward.
+
+Bidirectional RNNs have been used in various applications, such as part-of-speech (POS) tagging, in which it is vital to know the word before and after the target word, language translation, predicting protein structure, dependency parsing, and more. 
+
+The final output of the bidirectional RNN is the weighted sum of the outputs of the two composing RNNs. 
+
+# Deep RNNs
+Simple RNNs have only 1 hidden layer but a deep RNN by defn should have more than one hidden layer. But then, how are the hidden states computed when we have more than one hidden layer? 
+
+When we have an RNN with more than one hidden layer, hidden layers at the later layers will be computed by taking the previous hidden state and the previous layer's output as input,
+
+
+
+
+
+
+
+
+
+
+
+
+
