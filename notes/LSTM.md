@@ -44,15 +44,44 @@ to give as an output. The output gate will look up all the information in the ce
 
 Similar to other gates, it is also controlled by a sigmoid function, and its form is same as well. 
 
+## Updating the cell state
+
+We just learned how all three gates work in an LSTM network, but the question is, how can we actually update the cell state by adding relevant new information and deleting information that is not required from the cell state with the help of the gates?
+
+### Adding information
+
+To hold all the new information that can be added to the cell state (memory), we create a new vector called `g_t`. It is called a candidate state or internal state vector. Unlike gates that are regulated by the sigmoid function, the candidate state is regulated by the tanh function, cause we want the output range to be 
+between -1 adn 1, not 0 and 1. 
+
+How do we decide whether the information in the candidate state is relevant? We learned that the input gate is responsible for deciding whether to add new information or not, so if we multiply, its output with `g_t` i.e `i_t*g_t`. If the input gate returns 0 if the information is not required and 1 if the information is required.
+
+### Forgetting information
+
+We learned that the forget gate is used for removing information that is not required in the cell state. So, if we multiply the previous cell state, and forget gate, then we retain only relevant information in the cell state i.e. `f_t*c_(t-1)`
+
+```
+c_t = f_t*c_(t-1) + i_t*g_t
+```
+The above says that the updated cell state is given by the addition of the part that forgets info and the part that adds info. 
+
+## Updating the hidden state 
+
+We learned that the hidden state is used for computing the output, but how can we compute the output? We know that the output gate is responsible for deciding what information should be taken from the cell state to give as output. 
+
+```
+h_t = o_t*tanh(c_t)
+```
+Updated hidden state is obtained by the multiplication of the output state and the tanh of the updates cell state. 
 
 
+## Final Output 
 
+The final ouput is given my multiplying h_t with the hidden layer to output layer weight. Then a softmax layer is used to arrive at the final output. 
+```
+y_t = softmax(w*h_t)
+```
 
-
-
-
-
-
+## Forward Propagation in LSTMs
 
 
 
