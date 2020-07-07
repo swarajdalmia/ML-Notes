@@ -45,6 +45,7 @@ A 1\*1 filter is added before the 3\*3 and 5\*5 layers so as to lessen the numbe
 
 As the inception network is deep, with nine inception blocks, it is susceptible to the vanishing-gradient problem.  To avoid this, we introduce classifiers between the inception blocks. This is done at the end of the 3rd and the 6th block and the loss from these classifers is called the auxillary loss wich is weighted and added to the final layer loss. 
 
+![Inception network with 1\*1 conv that reduces dimensionality](https://github.com/swarajdalmia/ML-Experiments/tree/master/notes/images/inception-v1.jpeg)
 
 
 
