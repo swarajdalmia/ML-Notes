@@ -83,9 +83,9 @@ y_t = softmax(w*h_t)
 
 ## Forward Propagation in LSTMs
 
-![An LSTM fineprint](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm.jpeg)
+![An LSTM fineprint](/images/lstm.jpeg)
 
-![Formulas for updates](https://github.com/swarajdalmia/ML-Experiments/blob/master/notes/images/lstm-equations.jpeg)
+![Formulas for updates](/images/lstm-equations.jpeg)
 
 
 ## Backpropagation 
