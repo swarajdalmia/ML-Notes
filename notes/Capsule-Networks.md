@@ -63,3 +63,10 @@ Before the routing procedure, every capsule in the earlier layer spreads its out
 ### CapsNet Architecture
 
 It is discussed [here](https://pechyonkin.me/capsules-4/) and [here](https://brandonmorris.dev/2017/11/16/dynamic-routing-between-capsules/)
+
+## Performance on datasets
+With only three layers, the CapsNet architecture performed remarkably well. The authors report a 0.25% test error rate on MNIST, which is close to state of the art and not possible with a similarly shallow convnet.
+
+They also performed so experiments on a MultiMNIST data set: two images from MNIST overlapping each other by up to 80%.
+
+CapsNet is also performant on several other data sets. On CIFAR-10, it has a 10.6% error rate (with an ensemble and some minor architecture modifications), which is roughly the same as when convnets were first used on the data set. CapsNet attain 2.7% error on the smallNORB data set, and 4.3% error on a subset of Street View Housing Numbers (SVHN).
