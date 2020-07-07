@@ -1,6 +1,11 @@
 # Capsule Networks
-Capsule networks (CapsNets) were introduced by Geoffrey Hinton to overcome the limitations of convolutional networks.
+Capsule networks (CapsNets) were introduced by Geoffrey Hinton in 2017 to overcome the limitations of convolutional networks.
 Hinton stated the following: "The pooling operation used in convolutional neural networks is a big mistake and the fact that it works so well is a disaster."
+In addition to that, the team published an algorithm, called dynamic routing between capsules, that allows to train such a network.
+
+[Hinton's talk, what is wrong with CNNs](https://www.youtube.com/watch?v=rTawFwUvnLE&feature=youtu.be)
+
+[A good series expaining capsules](https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b)
 
 ### What is wrong with pooling operation ?
 The pooling operation is used to reduce dimensionality and to remove unwanted information? The pooling
@@ -32,6 +37,14 @@ The change for Capsule networks can be broken down simply by using vectors inste
 
 ![capsule networks](./images/capsule-networks.jpeg)
 
+Vectors help because the help us encode more information, and not just any kind of information, relational and relative information.
+Capsules also have the bonus of being able to achieve good accuracy with far less training data. It doesn’t need 50 examples of the same rotated dog; it just needs one with a vector representation which can easily be transformed. By forcing the model to learn the feature variant in a capsule, we may extrapolate possible variants more effectively with less training data.
+
+[Convnets are invariant, not equivariant](https://brandonmorris.dev/2017/11/16/dynamic-routing-between-capsules/)
+
+### Why it took so long ?
+
+The idea is really simple, there is no way no one has come up with it before! And the truth is, Hinton has been thinking about this for decades. The reason why there were no publications is simply because there was no technical way to make it work before. One of the reasons is that computers were just not powerful enough in the pre-GPU-based era before around 2012. Another reason is that there was no algorithm that allowed to implement and successfully learn a capsule network (in the same fashion the idea of artificial neurons was around since 1940-s, but it was not until mid 1980-s when backpropagation algorithm showed up and allowed to successfully train deep networks).
 
 ## What is a capsule ?
 A capsule is a group of neurons that learn to detect a particular feature in the image; say, eyes. Unlike neurons, which return a scalar, capsules return a vector.
@@ -42,6 +55,11 @@ Just like a CNN, capsules in the earlier layers detect basic features including 
 features, such as the overall face. Thus, capsules in the higher layers take input from the capsules in the lower layers. In order for the capsules in the higher 
 layers to detect a face, they not only check for the presence of features such as a nose and eyes, but also check their spatial relationships.
 
-## Capsule Networks
-The capusle activations from the lower layers are summed up(after multiplying the inputs with the weights), other computations are performed and then a squash 
-operation is performed to arrive at an activation for a higher level capsule. 
+##  Dynamic Routing Algorithm Between Capsules
+The authors chose an algorithm that encourages “routing by agreement”: capsules in an earlier layer that cause a greater output in the subsequent layer should be encouraged to send a greater portion of their output to that capsule in the subsequent layer.
+
+Before the routing procedure, every capsule in the earlier layer spreads its output evenly to every capsule in the subsequent layer (initial couplings can be learned like weights, but this isn’t done in the paper). During each iteration of the dynamic routing algorithm, strong outputs from capsules in the subsequent layer are used to encourage capsules in the previous layer to send a greater portion of their output
+
+### CapsNet Architecture
+
+It is discussed [here](https://pechyonkin.me/capsules-4/) and [here](https://brandonmorris.dev/2017/11/16/dynamic-routing-between-capsules/)
