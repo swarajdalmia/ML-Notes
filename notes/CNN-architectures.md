@@ -26,7 +26,7 @@ It consists of convolutional layers followed by a pooling layer and then again c
 2 x 2 pooling throughout the network. It is referred to as VGG-n, where n corresponds to a number of layers, excluding the pooling and softmax layer. 
 An example value of n is 16. The one shortcoming of VGGNet is that it is computationally expensive, and it has over 160 million parameters.
 
-![an example VGGNet architecture](https://github.com/swarajdalmia/ML-Experiments/tree/master/notes/images/VGGNet.jpeg)
+![an example VGGNet architecture](./images/VGGNet.jpeg)
 
 ## GoogleNet
 GoogleNet, also known as inception net, was the winner of ILSVRC 2014. It consists of various versions, and each version is an improved version of the previous 
@@ -45,7 +45,7 @@ A 1\*1 filter is added before the 3\*3 and 5\*5 layers so as to lessen the numbe
 
 As the inception network is deep, with nine inception blocks, it is susceptible to the vanishing-gradient problem.  To avoid this, we introduce classifiers between the inception blocks. This is done at the end of the 3rd and the 6th block and the loss from these classifers is called the auxillary loss wich is weighted and added to the final layer loss. 
 
-![Inception network with 1\*1 conv that reduces dimensionality](https://github.com/swarajdalmia/ML-Experiments/tree/master/notes/images/inception-v1.jpeg)
+![Inception network with 1\*1 conv that reduces dimensionality](./images/inception-v1.jpeg)
 
 
 
