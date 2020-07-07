@@ -48,6 +48,10 @@ As the inception network is deep, with nine inception blocks, it is susceptible 
 ![Inception network with 1\*1 conv that reduces dimensionality](./images/inception-v1.jpeg)
 
 
+## Inception v2 and v3
 
+In these networks, factorized convolution is used i.e. we can break down a convolutional layer with a larger filter size into a stack of convolutional layers with a smaller filter size. So, in the inception block, a convolutional layer with a 5 x 5 filter can be broken down into two convolutional layers with 3 x 3 filters.
+Having a factorized convolution increases performance and speed(in which cases ?). The authors also suggest breaking down a convolutional layer of filter size n x n into a stack of convolutional layers with filter sizes 1 x n and n x 1. However, that results in expanding our network in a deeper fashion, which will lead to loss of information. So, instead of making it deeper, we make our network wider.
 
+In inception net v3, we use factorized 7 x 7 convolutions with RMSProp optimizers. Also, we apply batch normalization in the auxiliary classifiers.
 
