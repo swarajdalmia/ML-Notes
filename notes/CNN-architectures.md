@@ -101,6 +101,9 @@ Taking this idea to an extreme means performing 1×1 to every channel, then perf
 
 - Depth seperable convolutions are expained in .\seperable-convolutions.md 
 
+## Others 
+Some others like "Inception-v4 (2016)", "Inception-ResNet-V2 (2016)" and "ResNeXt-50 (2017)" can be found in the ref below.
+
 ### Other Refs
 - [10 illustrated CNN architectures](https://towardsdatascience.com/illustrated-10-cnn-architectures-95d78ace614d#a253)
 
