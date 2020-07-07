@@ -31,3 +31,22 @@ An example value of n is 16. The one shortcoming of VGGNet is that it is computa
 ## GoogleNet
 GoogleNet, also known as inception net, was the winner of ILSVRC 2014. It consists of various versions, and each version is an improved version of the previous 
 one. We will explore each version one by one.
+
+### Inception V1
+Consider a problem where objects can appear on any region of the image. It might be small or big. It might take up a whole region of the image, or just a very small portion. Our network has to exactly identify the object. We use a filter to extract features from the image, but because the object of interest varies in size and location in each image, choosing the right filter size is difficult.
+
+We can use a filter of a large size when the object size is large, but a large filter size is not suitable when we have to detect an object that is in a small corner of an image. Since we use a fixed receptive field that is a fixed filter size, it is difficult to recognize objects in the images whose position varies greatly. We can use deep networks, but they are more vulnerable to overfitting.
+
+To overcome this, instead of using a single filter of the same size, the inception network uses multiple filters of varying sizes on the same input. An inception network consists of nine inception blocks stacked over one another.
+
+For one of the inception blocks/mudules, we perform convolution operations on a given image with three different filters, that is, 1 x 1, 3 x 3, and 5 x 5. Once the convolution operation is performed by all these different filters, we concatenate the results and feed it to the next inception block. Padding is appropriately added to keep the height and width the same across filters since they will simply be concatenated at the end. However, this concatenation results in increasing depth, so we need to adjust the nummber of filters so that the concatenation of filters doesn't increase the depth. 
+
+A 1\*1 filter is added before the 3\*3 and 5\*5 layers so as to lessen the number of operations. The 1\*1 operation does result in increased number of parameters to train(due to the addition of the weights of 1\*1 filters), however the net number of operations in convolution are greatly lessened as discussed [here](https://medium.com/coinmonks/paper-review-of-googlenet-inception-v1-winner-of-ilsvlc-2014-image-classification-c2b3565a64e7). The net result is decrease in complexity. The 1\*1 is used with relu so it also increases non-linearity. 
+
+As the inception network is deep, with nine inception blocks, it is susceptible to the vanishing-gradient problem.  To avoid this, we introduce classifiers between the inception blocks. This is done at the end of the 3rd and the 6th block and the loss from these classifers is called the auxillary loss wich is weighted and added to the final layer loss. 
+
+
+
+
+
+
