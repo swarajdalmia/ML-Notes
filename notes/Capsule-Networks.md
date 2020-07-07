@@ -61,8 +61,13 @@ The authors chose an algorithm that encourages “routing by agreement”: capsu
 Before the routing procedure, every capsule in the earlier layer spreads its output evenly to every capsule in the subsequent layer (initial couplings can be learned like weights, but this isn’t done in the paper). During each iteration of the dynamic routing algorithm, strong outputs from capsules in the subsequent layer are used to encourage capsules in the previous layer to send a greater portion of their output
 
 ### CapsNet Architecture
+First, we take the input image and feed it to a standard convolution layer, and we call the result convolutional inputs. Then, we feed the convolutional inputs to the primary capsules layer and get the primary capsules. Next, we compute digit capsules with primary capsules as input using the dynamic-routing algorithm.
+The digit capsules consist of 10 rows, and each of the rows represents the probability of the predicted digit. That is, row 1 represents the probability of the input digit to be 0, row 2 represents the probability of the digit 1, and so on. Since the input image is digit 3 in the preceding image, row 4, which represents the probability of digit 3, will be high in the digit capsules.
 
 It is discussed [here](https://pechyonkin.me/capsules-4/) and [here](https://brandonmorris.dev/2017/11/16/dynamic-routing-between-capsules/)
+
+### Loss Function
+The loss function of the Capsule network. The loss function is the weighted sum of two loss functions called margin loss and reconstruction loss.
 
 ## Performance on datasets
 With only three layers, the CapsNet architecture performed remarkably well. The authors report a 0.25% test error rate on MNIST, which is close to state of the art and not possible with a similarly shallow convnet.
