@@ -40,4 +40,4 @@ To increase the depth to k, we use k kernels.
 It has much less number of computations required and speeds up the process. For a sample calculation, look at the reference. 
 
 
-[intro to seperable convolutions](https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728)
+[Reference : Intro to seperable convolutions](https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728)
