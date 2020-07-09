@@ -83,6 +83,11 @@ We know that we start off an RNN by initializing its initial hidden state with r
 
 But when does the decoder stop? Because our output sequence has to stop somewhere, we cannot keep on feeding the predicted output word from the previous time step as an input to the next time step. When the decoder predicts the output word as EOS, this implies the end of the sentence.
 
+### Beam Search 
+Methods for predicting variable-length sequences include greedy search, exhaustive search, and beam search.
+Beam search strikes a balance between computational overhead and search quality using a flexible beam size.
+[ref](https://d2l.ai/chapter_recurrent-modern/beam-search.html).
+
 ### Attention
 Let's say the input sentence has 10 words; then we would have 10 hidden states. We take a sum of all these 10 hidden states and use it for the decoder to generate the target sentence. However, not all of these hidden states might be helpful in generating a target word at time step t. Some hidden states will be more useful than other hidden states. So, we need to know which hidden state is more important than another at time step   to predict the target word. To get this importance, we use the attention mechanism, which tells us which hidden state is more important to generate the target word at the time step t. Thus, attention mechanisms basically give the importance for each of the hidden states of the encoder to generate the target word at time step t. There are weights assigned to the hidden vectors to give attention to some. First a score is given and then softmax is used to normalise the probabilities. These are then multiplies to the context vector or embedding. 
 
