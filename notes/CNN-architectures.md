@@ -91,6 +91,10 @@ The basic building block for ResNets are the conv and identity blocks. They have
 
 [Paper: Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 
+[Why resnets work?](https://www.youtube.com/watch?v=RYth6EbBUqM&list=PLkDaE6sCZn6Gl29AoE31iwdVwSG-KnDzF&index=15)
+Normally more the depth of a network what is seen is that error rate increases. HOwever in resnets is it easy to learn an idenity map across the skip connections 
+so it is easy for the network to make some layers in the middle not useful, or useful to some extent(both). 
+
 ## Xception (2016)
 Xception is an adaptation from Inception, where the Inception modules have been replaced with depthwise separable convolutions. It has also roughly the same number of parameters as Inception-v1 (23M).
 
