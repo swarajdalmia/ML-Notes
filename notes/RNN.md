@@ -87,8 +87,12 @@ But when does the decoder stop? Because our output sequence has to stop somewher
 Let's say the input sentence has 10 words; then we would have 10 hidden states. We take a sum of all these 10 hidden states and use it for the decoder to generate the target sentence. However, not all of these hidden states might be helpful in generating a target word at time step t. Some hidden states will be more useful than other hidden states. So, we need to know which hidden state is more important than another at time step   to predict the target word. To get this importance, we use the attention mechanism, which tells us which hidden state is more important to generate the target word at the time step t. Thus, attention mechanisms basically give the importance for each of the hidden states of the encoder to generate the target word at time step t. There are weights assigned to the hidden vectors to give attention to some. First a score is given and then softmax is used to normalise the probabilities. These are then multiplies to the context vector or embedding. 
 
 
+## Perplexity 
+How to measure the sequence model quality. One way is to check how surprising the text is. A good language model is able to predict with high accuracy tokens that what we will see next. [ref](https://d2l.ai/chapter_recurrent-neural-networks/rnn.html)
 
+We might measure the quality of the model by computing  𝑝(𝑤) , i.e., the likelihood of the sequence. Unfortunately this is a number that is hard to understand and difficult to compare. After all, shorter sequences are much more likely to occur than the longer ones.
 
+For historical reasons, scientists in natural language processing prefer to use a quantity called perplexity rather than bitrate. It can be best understood as the harmonic mean of the number of real choices that we have when deciding which word to pick next. Note that perplexity naturally generalizes the notion of the cross-entropy loss. 
 
 
 
