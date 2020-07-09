@@ -1,5 +1,7 @@
 # Gradient Descent and its Variants 
 
+[A more in depth explanation of all the algortihsm discusses can be found here](https://d2l.ai/chapter_optimization/index.html).
+
 From : Hands on Deep Learning with Python - Sudharsan Ravichandiran
 
 Gradient descent is a first order optimisation algorithm. First-order optimization means that we calculate only the first-order derivative. 
