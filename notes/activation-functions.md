@@ -107,6 +107,8 @@ Softmax function is often described as a combination of multiple sigmoids. We kn
 
 - Useful for output neurons—typically Softmax is used only for the output layer, for neural networks that need to classify inputs into multiple categories.
 
+The softmax function, invented in 1959 by the social scientist R. Duncan Luce in the context of choice models, does precisely this. To transform our logits such that they become nonnegative and sum to 1, while requiring that the model remains differentiable, we first exponentiate each logit (ensuring non-negativity) and then divide by their sum (ensuring that they sum to 1). Although softmax is a nonlinear function, the outputs of softmax regression are still determined by an affine transformation of input features; thus, softmax regression is a linear model. It also helps in calculation of the derivative for the log likelihood loss function. 
+
 # Choosing the right activation function : Heuristics 
 
 - Sigmoid functions and their combinations generally work better in the case of classifiers
