@@ -95,6 +95,16 @@ The basic building block for ResNets are the conv and identity blocks. They have
 Normally more the depth of a network what is seen is that error rate increases. HOwever in resnets is it easy to learn an idenity map across the skip connections 
 so it is easy for the network to make some layers in the middle not useful, or useful to some extent(both). 
 
+### DenseNets
+ResNet significantly changed the view of how to parametrize the functions in deep networks. DenseNet is to some extent the logical extension of this. [here](https://d2l.ai/chapter_convolutional-modern/densenet.html). The key difference between ResNet and DenseNet is that in the latter case outputs are concatenated rather than added. As a result we perform a mapping from  𝐱  to its values after applying an increasingly complex sequence of functions.
+
+Articles and tutorials on densenets, [1](https://towardsdatascience.com/densenet-2810936aeebb), [2](https://towardsdatascience.com/understanding-and-visualizing-densenets-7f688092391a).
+
+The problems arise with CNNs when they go deeper. This is because the path for information from the input layer until the output layer (and for the gradient in the opposite direction) becomes so big, that they can get vanished before reaching the other side. Densenets solve the problem ensuring maximum information (and gradient) flow. To do it, they simply connect every layer directly with each other.
+
+Recent work has shown that convolutional networks can be substantially deeper, more accurate, and efficient to train if they contain shorter connections between layers close to the input and those close to the output. Dense Convolutional Network (DenseNet), which connects each layer to every other layer in a feed-forward fashion. Whereas traditional convolutional networks with L layers have L connections — one between each layer and its subsequent layer — our network has L(L+1)/ 2 direct connections. For each layer, the feature-maps of all preceding layers are used as inputs, and its own feature-maps are used as inputs into all subsequent layers. DenseNets have several compelling advantages: they alleviate the vanishing-gradient problem, strengthen feature propagation, encourage feature reuse, and substantially reduce the number of parameters.
+
+
 ## Xception (2016)
 Xception is an adaptation from Inception, where the Inception modules have been replaced with depthwise separable convolutions. It has also roughly the same number of parameters as Inception-v1 (23M).
 
