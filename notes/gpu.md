@@ -26,11 +26,16 @@ However, memory access latency can be hidden under thread parallelism(read [here
 This is the first step where the memory is fetched from the main memory (RAM) to the local memory on the chip (L1 cache and registers).
 
 ## Large and Fast Registers 
-
 The advantage of the GPU is here that it can have a small pack of registers for every processing unit (stream processor, or SM), of which it has many. Thus we can have in total a lot of registered memory, which is very small and thus very fast. 
 
-
 Keep in mind that the slower memory always dominates performance bottlenecks. If 95% of your memory movements take place in registers (80TB/s), and 5% in your main memory (0.75TB/s), then you still spend most of the time on memory access of main memory (about six times as much).
+
+## Note
+People use GPUs to do machine learning because they expect them to be fast. But transferring variables between contexts is slow. So we want you to be 100% certain that you want to do something slow before we let you do it. If the framework just did the copy automatically without crashing then you might not realize that you had written some slow code.
+
+Also, transferring data between devices (CPU, GPUs, other machines) is something that is much slower than computation. It also makes parallelization a lot more difficult, since we have to wait for data to be sent (or rather to be received) before we can proceed with more operations. This is why copy operations should be taken with great care. As a rule of thumb, many small operations are much worse than one big operation. Moreover, several operations at a time are much better than many single operations interspersed in the code (unless you know what you are doing) This is the case since such operations can block if one device has to wait for the other before it can do something else. It is a bit like ordering your coffee in a queue rather than pre-ordering it by phone and finding out that it is ready when you are.
+
+Last, when we print tensors or convert tensors to the NumPy format, if the data is not in main memory, the framework will copy it to the main memory first, resulting in additional transmission overhead. Even worse, it is now subject to the dreaded Global Interpreter Lock that makes everything wait for Python to complete.
 
 ## GPU, TPU and NPU's
 
