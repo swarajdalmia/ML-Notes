@@ -7,6 +7,8 @@ Under such circumstances (in which we need to remember the previous input), to m
 RNNs unlike feed-forward networks, predict the output not only on the basis of the current input but also on the basis of the previous hidden state which 
 captures past information/context. 
 
+[RNN's are utoregressive sequence models](https://d2l.ai/chapter_recurrent-neural-networks/sequence.html)
+
 ## Feed-forward in RNNs
 ```
 hidden_i = activation_func(weight_1*input + weight_2*hidden_(i-1))
