@@ -3,6 +3,9 @@
 `Timeline of CNN architectures discussed below:`
 ![](./images/cnn-architectures-timeline.jpeg)
 
+A [good narrative](https://d2l.ai/chapter_convolutional-modern/alexnet.html) on the field of computer vision before these ML architectures started to get popular.
+Earlier a large focus was given to feature extaction pipeline, however with the advent of large datadets, bigger computation, these features began to be learned as well. 
+
 ## LeNet
 The LeNet architecture is one of the classic architectures of a CNN.
 It consists of only seven layers(3 convolutional layers, 2 pooling layers, 1 fully connected layer, and 1 output layer).
@@ -16,7 +19,7 @@ LeNet-5(1998) is a simple architecture with 2 convolutional and 3 fully-connecte
 ## AlexNet(2012)
 AlexNet is a classic and powerful deep learning architecture. It won the ILSVRC 2012 by significantly reducing the error rate from 26% to 15.3%. 
 ILSVRC stands for ImageNet Large Scale Visual Recognition Competition, which is one of the biggest competitions focused on computer vision tasks, such as image 
-classification, localization, object detection, and more.
+classification, localization, object detection, and more. This network proved, for the first time, that the features obtained by learning can transcend manually-design features, breaking the previous paradigm in computer vision.
 
 ImageNet is a huge dataset containing over 15 million labeled, high-resolution images, with over 22,000 categories. 
 AlexNet was designed by [Alex Krizhevsky, Geoffrey Hinton, and Ilya Sutskever](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks).
@@ -26,9 +29,11 @@ It consists of 5 convolutional layers and 3 fully connected layers and 60 millio
 
 It uses dropout to handle overfitting, and dropout is performed before the first and second fully connected layers. It uses data augmentation techniques, such as image translation, and is trained using batch stochastic gradient descent.
 
+A more detailed architecture [discussion](https://d2l.ai/chapter_convolutional-modern/alexnet.html).
+
 ## VGGNet-16(2014)
 VGGNet is one of the most popularly used CNN architectures. It was invented by the Visual Geometry Group (VGG) at the University of Oxford. It started to get 
-very popular when it became the first runner-up of ILSVRC 2014.
+very popular when it became the first runner-up of ILSVRC 2014. VGG-11 constructs a network using reusable convolutional blocks. Different VGG models can be defined by the differences in the number of convolutional layers and output channels in each block. The use of blocks leads to very compact representations of the network definition. It allows for efficient design of complex networks.
 
 It consists of convolutional layers followed by a pooling layer and then again convolutional layers followed by pooling layers. It uses 3 x 3 convolution and 
 2 x 2 pooling throughout the network. It is referred to as VGG-n, where n corresponds to a number of layers, excluding the pooling and softmax layer. 
