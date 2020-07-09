@@ -1,5 +1,7 @@
 # GPU's
 
+[A deep discussion of hardware](https://d2l.ai/chapter_computational-performance/hardware.html).
+
 Q) What tasks are faster on CPU's and which are faster on GPU's ?
 
 In the beginning, the main tasks that were accelerated using GPUs were computer graphics. Hence the name graphics processing unit, but in recent years, they are increasingly used in other area and a new type of programming model called GPGPU or **general purpose GPU computing** is comping up.
