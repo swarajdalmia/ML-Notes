@@ -1,6 +1,6 @@
 # Gradient Descent and its Variants 
 
-[A more in depth explanation of all the algortihsm discusses can be found here](https://d2l.ai/chapter_optimization/index.html).
+[A more in depth explanation of all the algorithms discussed can be found here](https://d2l.ai/chapter_optimization/index.html).
 
 From : Hands on Deep Learning with Python - Sudharsan Ravichandiran
 
@@ -75,6 +75,8 @@ exponentially decaying running average of gradients is taken such that the the p
 Similar to Adadelta, RMSProp was introduced to combat the decaying learning rate problem of Adagrad. Instead of taking the sum of the square of all the past 
 gradients, the moving average is calculated in a different way. There is a para eta which is usually set to a value of 0.9.
 
+One of the key issues of adagrad is that the learning rate decreases at a predefined schedule. While this is generally appropriate for convex problems, it might not be ideal for nonconvex ones, such as those encountered in deep learning. Yet, the coordinate-wise adaptivity of Adagrad is highly desirable as a preconditioner. [Tieleman & Hinton, 2012] proposed the RMSProp algorithm as a simple fix to decouple rate scheduling from coordinate-adaptive learning rates.
+
 ## Adaptive Moment Estimation(ADAM)
 
  While reading about RMSProp, we learned that we compute the running average of squared gradients to avoid the diminishing learning rate problem.
@@ -94,9 +96,17 @@ gradients, the moving average is calculated in a different way. There is a para 
  
  - Nadam
  Nadam is another small extension of the Adam method. As the name suggests, here, we incorporate NAG into Adam. 
- 
- 
 
+In particular, [Reddi et al., 2019] show that there are situations where Adam can diverge due to poor variance control. In a follow-up work [Zaheer et al., 2018] proposed a hotfix to Adam, called Yogi which addresses these issues. For gradients with significant variance we may encounter issues with convergence. They can be amended by using larger minibatches or by switching to an improved estimate for s_t . Yogi offers such an alternative.
+ 
+ ## Learning Rate Scheduler
+So far we primarily focused on optimization algorithms for how to update the weight vectors rather than on the rate at which they are being updated. Nonetheless, adjusting the learning rate is often just as important as the actual algorithm.
+
+- Most obviously the magnitude of the learning rate matters. If it is too large, optimization diverges, if it is too small, it takes too long to train or we end up with a suboptimal result. We saw previously that the condition number of the problem matters (see e.g., Section 11.6 for details). Intuitively it is the ratio of the amount of change in the least sensitive direction vs. the most sensitive one.
+- Secondly, the rate of decay is just as important. If the learning rate remains large we may simply end up bouncing around the minimum and thus not reach optimality. Section 11.5 discussed this in some detail and we analyzed performance guarantees in Section 11.4. In short, we want the rate to decay, but probably more slowly than  (𝑡−12)  which would be a good choice for convex problems.
+- Another aspect that is equally important is initialization. This pertains both to how the parameters are set initially (review Section 4.8 for details) and also how they evolve initially. This goes under the moniker of warmup, i.e., how rapidly we start moving towards the solution initially. Large steps in the beginning might not be beneficial, in particular since the initial set of parameters is random. The initial update directions might be quite meaningless, too.
+
+[Look here](https://d2l.ai/chapter_optimization/lr-scheduler.html). Verious policies like factor scheduler, cosine scheduler, warmup etc are discussed.
 
 
 
