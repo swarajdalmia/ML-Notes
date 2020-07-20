@@ -54,4 +54,22 @@ This is covered in another note.
 ## Region-based CNNs (R-CNNs)
 This is covered in another note. 
 
+## Semantic Segmentation and the Dataset
+Semantic regions label and predict objects at the pixel level rather than use bounding boxes. In the computer vision field, there are two important methods related to semantic segmentation: image segmentation and instance segmentation. Instance segmentation is also called simultaneous detection and segmentation. This method attempts to identify the pixel-level regions of each object instance in an image. In contrast to semantic segmentation, instance segmentation not only distinguishes semantics, but also different object instances. If an image contains two dogs, instance segmentation will distinguish which pixels belong to which dog.
+
+In the semantic segmentation field, one important dataset is Pascal VOC2012. 
+
+## Fully Convolutional Networks
+
+A fully convolutional network (FCN) [Long et al., 2015] uses a convolutional neural network to transform image pixels to pixel categories. 
+The fully convolutional network first uses the convolutional neural network to extract image features, then transforms the number of channels into the number of categories through the  1×1  convolution layer, and finally transforms the height and width of the feature map to the size of the input image by using the transposed convolution layer.
+
+## Neural Style Transfer 
+we will discuss how we can use convolution neural networks (CNNs) to automatically apply the style of one image to another image, an operation known as style transfer [Gatys et al., 2016]. 
+
+#### Technique 
+Content and style input images and composite image produced by style transfer.  First, we initialize the composite image. For example, we can initialize it as the content image. This composite image is the only variable that needs to be updated in the style transfer process, i.e., the model parameter to be updated in style transfer. Then, we select a pre-trained CNN to extract image features. These model parameters do not need to be updated during training. The deep CNN uses multiple neural layers that successively extract image features. We can select the output of certain layers to use as content features or style features. 
+
+The loss functions used in style transfer generally have three parts: 1. Content loss is used to make the composite image approximate the content image as regards content features. 2. Style loss is used to make the composite image approximate the style image in terms of style features. 3. Total variation loss helps reduce the noise in the composite image. Finally, after we finish training the model, we output the style transfer model parameters to obtain the final composite image.
+
 
