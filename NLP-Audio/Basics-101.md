@@ -316,36 +316,4 @@ Automatic summarization is a useful NLP task that identifies the most relevant i
 In most implementations, it simply extracts a subset of sentences deemed most important. One method to measure importance is to count informative words based on lexical measures (e.g., TFIDF).  Another is to use discourse measures (e.g., coherence) to identify key sentences. Centroid-based methods evaluate word probability relative to the background corpus to determine importance. A creative approach called TextRank takes a graph-based approach to assign sentence scores based on lexical similarity of words.
 
 ### Abstraction Based 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Unlike extraction-based copying, abstraction-based approaches take a semantic approach. One method is to use entity recognition and semantic role labeling to identify relations. 
